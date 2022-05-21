@@ -1,44 +1,34 @@
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
-submitBtn.addEventListener('submit', (event) => {
-    let playerName = event.target[0].value
-    
-    event.preventDefault()
-    fetchAllPlayers(event)
-})
-function findPlayer(players) {
-    return players.first_name && players.last_name == `${playerName}`
-}
-// Event Handlers 
-// const firstFindMyPlayer (event) => {
-    //         event.preventDefault()
-    //         console.log(event)
-    //         fetch('https://www.balldontlie.io/api/v1/players')
-    //         .then(response => response.json())
-    //         .then(data => {
-        //             const searchString = event.target.value;
-        //             if(searchString == `${data.full_name && data.last_name}`) {
-            //                 return createCard(player)
-            //             }
-            //         })
-            //     }
-            // Fetch Functions
-            function fetchAllPlayers(event) {
-                console.log(event)
-                fetch('https://www.balldontlie.io/api/v1/players')
-                .then(response => response.json())
-                .then(data => {
-                    
-                }
 
-            })
-}
-// function findMyPlayer(object) {
-//     object.find(foundPlayer)
-// }
-// function foundPlayer(player) {
-//     return player.
-// }
+submitBtn.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let playerName = event.target[0].value 
+    
+    function renderMyPlayer() {
+        fetch(`https://www.balldontlie.io/api/v1/players?search=${playerName}`)
+        .then(response => response.json())
+        .then(resp => {
+            let playersObject = resp.data
+            console.log(resp)
+            //findPlayer(playersObject)
+            //console.log(playersObject.find(name => name.first_name === firstName && name.last_name === lastName))
+        })
+    }
+    renderMyPlayer()
+    
+})
+
+// Event Handlers 
+
+            // Fetch Functions
+
+            
+
+document.addEventListener("DOMContentLoaded", event => {
+    
+    
+})
 // // Handler Functions 
 // function UseNameToCreateCard() {
     
