@@ -27,9 +27,7 @@ submitBtn.addEventListener('submit', (event) => {
     
 })
 
-// Event Handlers 
 
-            // Fetch Functions
 
             
 
