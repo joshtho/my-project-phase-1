@@ -1,16 +1,24 @@
+const mainDiv = () => document.getElementById('main')
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
 
+// Helpers
+function resetMainDiv() {
+    mainDiv().innerHTML = ""
+}
+
 submitBtn.addEventListener('submit', (event) => {
     event.preventDefault()
+    resetMainDiv()
     let playerName = event.target[0].value 
     
     function renderMyPlayer() {
         fetch(`https://www.balldontlie.io/api/v1/players?search=${playerName}`)
         .then(response => response.json())
         .then(resp => {
-            let playersObject = resp.data
+        
             console.log(resp)
+            console.log(resp.data[0].team)
             //findPlayer(playersObject)
             //console.log(playersObject.find(name => name.first_name === firstName && name.last_name === lastName))
         })
