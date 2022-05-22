@@ -17,17 +17,36 @@ submitBtn.addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(resp => {
         
-            console.log(resp.data)
+            console.log("player data", resp.data)
             let searchedPlayer = resp.data
-            function getPlayersTeam(searchedPlayer) {
-
-            }
             
+            function createCard(player) {
+                
+                let div = document.createElement("div")
+                div.className = "card"
+                mainDiv().appendChild(div)
+                
+                const playerCard = 
+                `<h2>${player[0].first_name} ${player[0].last_name}</h2>
+                <ul>
+                <li>
+                Position: ${player[0].position}
+                Team: ${player[0].team.full_name}
+                abbreviation: ${player[0].team.abbreviation}
+                <li>
+                </ul>`
+                
+                div.innerHTML += playerCard
+            }
+            createCard(searchedPlayer)
+        
         })
     }
     renderMyPlayer()
-    
 })
+            
+            
+    
 
 
 
@@ -45,22 +64,3 @@ document.addEventListener("DOMContentLoaded", event => {
 //             return createCard(player)
 //         }
 // }
-function createCard(player) {
-
-    let playerName = document.getElementById("get-player")
-    let div = document.createElement("div")
-    div.className = "card"
-    mainDiv().appendChild(div)
-    
-    const playerCard = 
-    `<h2>${player.first_name} ${player.last_name}</h2>
-    <ul>
-        <li>
-            Position: ${player.position}
-            Team: ${player.team.full_name}
-            abbreviation: ${player.team.abbreviation}
-        <li>
-    </ul>`
-    
-    div.innerHTML += playerCard
-    }
