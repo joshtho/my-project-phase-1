@@ -1,3 +1,5 @@
+// Node getters
+const homePage = document.getElementById("HomePage")
 const mainDiv = () => document.getElementById('main')
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
@@ -6,8 +8,15 @@ const submitBtn = document.querySelector('.container')
 function resetMainDiv() {
     mainDiv().innerHTML = ""
 }
+//Event Handler
+function reloadHomePage() {
+    document.location.reload();
+}    
 
-submitBtn.addEventListener('submit', (event) => {
+//Event Listeners
+
+function attachSubmitForm() {
+    submitBtn.addEventListener('submit', (event) => {
     event.preventDefault()
     resetMainDiv()
     let playerName = event.target[0].value 
@@ -42,25 +51,19 @@ submitBtn.addEventListener('submit', (event) => {
     }
     renderMyPlayer()
 })
-            
-            
-    
+}
+
+function attachHomepageReloadEvent() {
+    homePage.addEventListener("click", reloadHomePage)
+}          
 
 
 
             
 
 document.addEventListener("DOMContentLoaded", event => {
-    const margin = document.getElementById("navBar")
-    margin.style.marginLeft = "50px"
-    marging.style.marginRight = "50px"
-    
+    attachSubmitForm();
+    attachHomepageReloadEvent()
+    homePage.style.marginLeft = "100px"
+
 })
-// // Handler Functions 
-// function UseNameToCreateCard() {
-    
-//         const searchString = event.target.value;
-//         if(searchString == `${data.full_name && data.last_name}`) {
-//             return createCard(player)
-//         }
-// }
