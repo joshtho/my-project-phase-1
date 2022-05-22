@@ -28,12 +28,16 @@ submitBtn.addEventListener('submit', (event) => {
                 
                 const playerCard = 
                 `<h2>${player[0].first_name} ${player[0].last_name}</h2>
-                <ul>
-                <li>
-                Position: ${player[0].position}
-                Team: ${player[0].team.full_name}
-                abbreviation: ${player[0].team.abbreviation}
-                <li>
+                    <ul>
+                        <li>
+                            Position: ${player[0].position}
+                        </li>
+                        <li>
+                            Team: ${player[0].team.full_name}
+                        </li>
+                        <li>
+                            abbreviation: ${player[0].team.abbreviation}
+                        </li>
                 </ul>`
                 
                 div.innerHTML += playerCard
