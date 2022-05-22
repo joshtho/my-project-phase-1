@@ -17,11 +17,11 @@ function reloadHomePage() {
 
 function attachSubmitForm() {
     submitBtn.addEventListener('submit', (event) => {
-    event.preventDefault()
-    resetMainDiv()
-    let playerName = event.target[0].value 
+        event.preventDefault()
+        resetMainDiv()
+        let playerName = event.target[0].value 
     
-    function renderMyPlayer() {
+        function renderMyPlayer() {
         fetch(`https://www.balldontlie.io/api/v1/players?search=${playerName}`)
         .then(response => response.json())
         .then(resp => {
@@ -46,14 +46,19 @@ function attachSubmitForm() {
                 
             }
             createCard(searchedPlayer)
-        
+            const btn = document.createElement("button")
+            btn.innerText = "Done"
+            btn.className = "button"
+            btn.addEventListener("click", reloadHomePage)
+            mainDiv().appendChild(btn)
+            
         })
     }
     renderMyPlayer()
 })
 }
 
-function attachHomepageReloadEvent() {
+function attachHomePageReloadEvent() {
     homePage.addEventListener("click", reloadHomePage)
 }          
 
@@ -63,7 +68,7 @@ function attachHomepageReloadEvent() {
 
 document.addEventListener("DOMContentLoaded", event => {
     attachSubmitForm();
-    attachHomepageReloadEvent()
+    attachHomePageReloadEvent()
     homePage.style.marginLeft = "100px"
 
 })
