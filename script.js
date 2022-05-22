@@ -28,12 +28,12 @@ submitBtn.addEventListener('submit', (event) => {
                 const playerCard = 
                 `<h2>${player[0].first_name} ${player[0].last_name}</h2>
                 
-                
                 <h3>${player[0].team.full_name}</h3>
                 <h4>${player[0].team.abbreviation}</h4>
                 <h4>${player[0].position}</h4>`
                 
                 mainDiv().innerHTML += playerCard
+                
                 
             }
             createCard(searchedPlayer)
