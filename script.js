@@ -22,25 +22,25 @@ submitBtn.addEventListener('submit', (event) => {
             
             function createCard(player) {
                 
-                let div = document.createElement("div")
-                div.className = "card"
-                mainDiv().appendChild(div)
+                resetMainDiv()
+                mainDiv().className = "card"
                 
                 const playerCard = 
                 `<h2>${player[0].first_name} ${player[0].last_name}</h2>
-                    <ul>
-                        <li>
-                            Position: ${player[0].position}
-                        </li>
-                        <li>
-                            Team: ${player[0].team.full_name}
-                        </li>
-                        <li>
-                            abbreviation: ${player[0].team.abbreviation}
-                        </li>
+                <ul>
+                <li>
+                Position: ${player[0].position}
+                </li>
+                <li>
+                Team: ${player[0].team.full_name}
+                </li>
+                <li>
+                abbreviation: ${player[0].team.abbreviation}
+                </li>
                 </ul>`
                 
-                div.innerHTML += playerCard
+                mainDiv().innerHTML += playerCard
+                
             }
             createCard(searchedPlayer)
         
