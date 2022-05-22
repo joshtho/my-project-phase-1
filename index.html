@@ -12,16 +12,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
+    <nav class="blue darken-2">
+        <div id="navBar" class="nav-wrapper">
           <a href="#" class="brand-logo">Which Team?</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
+            <!-- <li><a href="sass.html">Sass</a></li>
             <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li> -->
           </ul>
         </div>
       </nav>
+
+      <div class="container">
+          <form class="search-player">
+              <input type="text" id="myInput"  placeholder="Search NBA Player">
+              <br />
+              <input
+                type="submit"
+                name="submit"
+                value="Search"
+                class="submit"
+              />
+          </form>
+      </div>
+
     <div id="main">
         <h1>Who he play for again?</h1>
         <img src="http://i.imgur.com/yqtj8vi.jpg" 
@@ -32,19 +46,10 @@
             that certain player that seems to have a new team every year?
             Wonder no more, we got you.
         </p>
-       <img src="https://andscape.com/wp-content/uploads/2017/06/nbalogo.jpg?w=700"
-    </div>
-    <div class="container">
-        <form class="search-player">
-            <input type="text" id="myInput"  placeholder="Search NBA Player">
-            <br />
-            <input
-              type="submit"
-              name="submit"
-              value="Search"
-              class="submit"
-            />
-        </form>
+        <img id="logo" 
+        src="https://andscape.com/wp-content/uploads/2017/06/nbalogo.jpg?w=700"
+        width="350"
+        height="196">
     </div>
     
 <script src="script.js"></script>

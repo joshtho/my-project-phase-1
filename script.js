@@ -51,7 +51,9 @@ submitBtn.addEventListener('submit', (event) => {
             
 
 document.addEventListener("DOMContentLoaded", event => {
-    
+    const margin = document.getElementById("navBar")
+    margin.style.marginLeft = "50px"
+    marging.style.marginRight = "50px"
     
 })
 // // Handler Functions 
