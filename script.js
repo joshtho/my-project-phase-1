@@ -3,11 +3,13 @@ const homePage = document.getElementById("HomePage")
 const mainDiv = () => document.getElementById('main')
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
+const listPage = document.getElementById("listPage")
 
 // Helpers
 function resetMainDiv() {
     mainDiv().innerHTML = ""
 }
+
 //Event Handler
 function renderHomePage() {
     resetMainDiv();
@@ -31,11 +33,17 @@ function renderHomePage() {
     mainDiv().appendChild(img2)
 }
 
+function renderFavoriteListPage() {
+    resetMainDiv();
+    const h1 = document.createElement("h1");
+    h1.innerText = "Your favorites"
+    mainDiv().appendChild(h1);
+    renderFavoritePlayers();
+}
+
 
 
 //Event Listeners
-
-
 
 function attachSubmitForm() {
     submitBtn.addEventListener('submit', (event) => {
@@ -65,24 +73,26 @@ function attachSubmitForm() {
                 
                 mainDiv().innerHTML += playerCard
             }
+            createCard(searchedPlayer) 
                 
-                
-            createCard(searchedPlayer)
             
             const btn = document.createElement("button")
             btn.innerText = "Home"
             btn.className = "button"
-            btn.addEventListener("click", renderHomePage)
             const btn2 = document.createElement("button")
             btn2.innerText = "Save to Favorites"
             btn2.className = 'button'
+            
+            btn.addEventListener("click", renderHomePage)
             //btn2.addEventListener("click", renderFavoritesPage)
+            
             mainDiv().appendChild(btn2)
             mainDiv().appendChild(btn)
             
         })
     }
-    renderMyPlayer()
+    renderMyPlayer();
+   
 })
 }
 
@@ -90,10 +100,12 @@ function attachHomePageEvent() {
     homePage.addEventListener("click", renderHomePage)
 }          
 
+
 document.addEventListener("DOMContentLoaded", event => {
     renderHomePage(); 
     attachSubmitForm();
     attachHomePageEvent();
+    attachFavoriteListClickEvent();
     homePage.style.marginLeft = "100px"
     
 })
