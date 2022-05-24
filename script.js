@@ -84,7 +84,7 @@ function attachSubmitForm() {
             btn2.className = 'button'
             
             btn.addEventListener("click", renderHomePage)
-            //btn2.addEventListener("click", renderFavoritesPage)
+            btn2.addEventListener("click", () => favoritePlayer(onePlayer))
             
             mainDiv().appendChild(btn2)
             mainDiv().appendChild(btn)
