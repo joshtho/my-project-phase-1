@@ -4,7 +4,7 @@ const mainDiv = () => document.getElementById('main')
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
 const listPage = document.getElementById("listPage")
-
+let favPlayers = []
 // Helpers
 function resetMainDiv() {
     mainDiv().innerHTML = ""
@@ -43,17 +43,37 @@ function renderFavoriteListPage() {
 
 const renderFavoritePlayers = () => {
     const ul = document.createElement("ul")
-    quotes.forEach(data => renderOnePlayer(data, ul))
+    favPlayers.forEach(data => renderOnePlayer(data, ul))
     mainDiv().appendChild(ul);
 }
 
 const renderOnePlayer = (data, ul) => {
     const li = document.createElement('li');
-    li.innerText = data.quote
+    li.innerText = data.player
     ul.appendChild(li)
 }
 
+const fetchPlayerlist = () => {
+    fetch("http://localhost:3000/favoritePlayer")
+    .then(resp => resp.json())
+    .then(data => favPlayers = data)
+    }
 
+    const favoritePlayer = (player) => {
+        fetch("http://localhost:3000/favorites", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({player: player})
+        })
+        .then(response => response.json())
+        .then(data => {
+            favPlayers.push(data);
+            renderQuoteListPage()
+        })
+    }    
 
 //Event Listeners
 
@@ -67,8 +87,6 @@ function attachSubmitForm() {
         fetch(`https://www.balldontlie.io/api/v1/players?search=${playerName}`)
         .then(response => response.json())
         .then(resp => {
-        
-            console.log("player data", resp.data)
             let searchedPlayer = resp.data
             
             function createCard(player) {
@@ -121,6 +139,7 @@ document.addEventListener("DOMContentLoaded", event => {
     attachSubmitForm();
     attachHomePageEvent();
     attachFavoriteListClickEvent();
+    fetchPlayerlist();
     homePage.style.marginLeft = "100px"
     
 })
