@@ -1,43 +1,16 @@
 {
   "favoritePlayer": [
     {
-      "id": 1,
-      "player": "Josh Giddey"
+      "player": "Josh Giddey: Oklahoma City Thunder",
+      "id": 1
     },
     {
-      "id": 2,
-      "player": "Lu Dort"
+      "player": "Josh Giddey: Oklahoma City Thunder",
+      "id": 2
     },
     {
-      "player": [
-        {
-          "id": 175,
-          "first_name": "Shai",
-          "height_feet": 6,
-          "height_inches": 6,
-          "last_name": "Gilgeous-Alexander",
-          "position": "G",
-          "team": {
-            "id": 21,
-            "abbreviation": "OKC",
-            "city": "Oklahoma City",
-            "conference": "West",
-            "division": "Northwest",
-            "full_name": "Oklahoma City Thunder",
-            "name": "Thunder"
-          },
-          "weight_pounds": 181
-        }
-      ],
+      "player": "Chris Paul: Phoenix Suns",
       "id": 3
-    },
-    {
-      "player": "ShaiGilgeous-Alexander",
-      "id": 4
-    },
-    {
-      "player": "Shai Gilgeous-Alexander",
-      "id": 5
     }
   ]
 }
