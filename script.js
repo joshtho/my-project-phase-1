@@ -114,7 +114,7 @@ function attachHomePageEvent() {
 function attachFavoriteListClickEvent() {
     listPage.addEventListener("click", renderFavoriteListPage)
 }
-
+// DB JSON!!!!!!
 
 document.addEventListener("DOMContentLoaded", event => {
     renderHomePage(); 
