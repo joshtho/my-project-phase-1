@@ -41,6 +41,18 @@ function renderFavoriteListPage() {
     renderFavoritePlayers();
 }
 
+const renderFavoritePlayers = () => {
+    const ul = document.createElement("ul")
+    quotes.forEach(data => renderOnePlayer(data, ul))
+    mainDiv().appendChild(ul);
+}
+
+const renderOnePlayer = (data, ul) => {
+    const li = document.createElement('li');
+    li.innerText = data.quote
+    ul.appendChild(li)
+}
+
 
 
 //Event Listeners
@@ -99,6 +111,9 @@ function attachSubmitForm() {
 function attachHomePageEvent() {
     homePage.addEventListener("click", renderHomePage)
 }          
+function attachFavoriteListClickEvent() {
+    listPage.addEventListener("click", renderFavoriteListPage)
+}
 
 
 document.addEventListener("DOMContentLoaded", event => {
