@@ -53,14 +53,14 @@ const renderOnePlayer = (data, ul) => {
     ul.appendChild(li)
 }
 
-const fetchPlayerlist = () => {
+const fetchPlayerList = () => {
     fetch("http://localhost:3000/favoritePlayer")
     .then(resp => resp.json())
     .then(data => favPlayers = data)
     }
 
     const favoritePlayer = (player) => {
-        fetch("http://localhost:3000/favorites", {
+        fetch("http://localhost:3000/favoritePlayer", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -71,7 +71,7 @@ const fetchPlayerlist = () => {
         .then(response => response.json())
         .then(data => {
             favPlayers.push(data);
-            renderQuoteListPage()
+            renderFavoriteListPage()
         })
     }    
 
@@ -88,6 +88,7 @@ function attachSubmitForm() {
         .then(response => response.json())
         .then(resp => {
             let searchedPlayer = resp.data
+            let fullName = resp.data[0].first_name + " " + resp.data[0].last_name
             
             function createCard(player) {
                 
@@ -114,7 +115,7 @@ function attachSubmitForm() {
             btn2.className = 'button'
             
             btn.addEventListener("click", renderHomePage)
-            btn2.addEventListener("click", () => favoritePlayer(onePlayer))
+            btn2.addEventListener("click",() => favoritePlayer(fullName))
             
             mainDiv().appendChild(btn2)
             mainDiv().appendChild(btn)
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", event => {
     attachSubmitForm();
     attachHomePageEvent();
     attachFavoriteListClickEvent();
-    fetchPlayerlist();
+    fetchPlayerList();
     homePage.style.marginLeft = "100px"
     
 })
