@@ -1,4 +1,4 @@
-Node getters
+//Node getters
 const homePage = document.getElementById("HomePage")
 const mainDiv = () => document.getElementById('main')
 const searchBar = document.getElementById('myInput')
@@ -13,18 +13,25 @@ function renderHomePage() {
     resetMainDiv();
     const h1 = document.createElement("h1");
     const p = document.createElement("p");
-    const img1 = document.createElement("img");
-    const img2 = document.createElement("img");
+
     const img1 = new Image(207, 243);
     const img2 = new Image(350, 196);
-    
+
+    img1.src = "http://i.imgur.com/yqtj8vi.jpg"
+    img2.src = "https://andscape.com/wp-content/uploads/2017/06/nbalogo.jpg?w=700"
+
     p.innerText = "Have you ever been talking with your buddies about the NBA " 
-    + "and wondered what happend to that certain player that seems to have a 
+    + "and wondered what happend to that certain player that seems to have a "
     + "new team every year? Wonder no more, we got you."
     h1.innerText = "Who he play for?"
 
+    mainDiv().appendChild(h1)
+    mainDiv().appendChild(img1)
+    mainDiv().appendChild(p)
+    mainDiv().appendChild(img2)
+}
 
-}    
+
 
 //Event Listeners
 
@@ -61,10 +68,16 @@ function attachSubmitForm() {
                 
                 
             createCard(searchedPlayer)
+            
             const btn = document.createElement("button")
-            btn.innerText = "Done"
+            btn.innerText = "Home"
             btn.className = "button"
-            btn.addEventListener("click", reloadHomePage)
+            btn.addEventListener("click", renderHomePage)
+            const btn2 = document.createElement("button")
+            btn2.innerText = "Save to Favorites"
+            btn2.className = 'button'
+            //btn2.addEventListener("click", renderFavoritesPage)
+            mainDiv().appendChild(btn2)
             mainDiv().appendChild(btn)
             
         })
@@ -73,13 +86,14 @@ function attachSubmitForm() {
 })
 }
 
-function attachHomePageReloadEvent() {
-    homePage.addEventListener("click", reloadHomePage)
+function attachHomePageEvent() {
+    homePage.addEventListener("click", renderHomePage)
 }          
 
 document.addEventListener("DOMContentLoaded", event => {
+    renderHomePage(); 
     attachSubmitForm();
-    attachHomePageReloadEvent();
+    attachHomePageEvent();
     homePage.style.marginLeft = "100px"
-
+    
 })
