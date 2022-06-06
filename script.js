@@ -1,6 +1,6 @@
 //Node getters
 const homePage = document.getElementById("HomePage")
-const mainDiv = () => document.getElementById('main')
+const mainDiv = document.getElementById('main')
 const searchBar = document.getElementById('myInput')
 const submitBtn = document.querySelector('.container')
 const listPage = document.getElementById("listPage")
@@ -8,7 +8,7 @@ let favPlayers = []
 
 // Helpers
 function resetMainDiv() {
-    mainDiv().innerHTML = ""
+    mainDiv.innerHTML = ""
 }
 
 
@@ -34,25 +34,26 @@ function renderHomePage() {
     + "new team every year? Wonder no more, we got you."
     h1.innerText = "Who he play for?"
 
-    mainDiv().appendChild(h1)
-    mainDiv().appendChild(img1)
-    mainDiv().appendChild(p)
-    mainDiv().appendChild(img2)
+    mainDiv.appendChild(h1)
+    mainDiv.appendChild(img1)
+    mainDiv.appendChild(p)
+    mainDiv.appendChild(img2)
+
 }
 
 function renderFavoriteListPage() {
     resetMainDiv();
     const h1 = document.createElement("h1");
     h1.innerText = "Your favorites"
-    mainDiv().appendChild(h1);
+    mainDiv.appendChild(h1);
     renderFavoritePlayers();
-    mainDiv().appendChild(btn);
+    mainDiv.appendChild(btn);
 }
 
 const renderFavoritePlayers = () => {
     const ul = document.createElement("ul")
     favPlayers.forEach(data => renderOnePlayer(data, ul))
-    mainDiv().appendChild(ul);
+    mainDiv.appendChild(ul);
 }
 
 const renderOnePlayer = (data, ul) => {
@@ -100,11 +101,11 @@ function attachSubmitForm() {
             let searchedPlayer = resp.data
             let fullNameAndTeam = resp.data[0].first_name + " " + resp.data[0].last_name + ": "
             + resp.data[0].team.full_name
-            console.log(fullNameAndTeam)
+            
             function createCard(player) {
                 
                 resetMainDiv()
-                mainDiv().className = "card"
+                mainDiv.className = "card"
                 
                 const playerCard = 
                 `<h2>${player[0].first_name} ${player[0].last_name}</h2>
@@ -113,7 +114,7 @@ function attachSubmitForm() {
                 <h4>${player[0].team.abbreviation}</h4>
                 <h4>${player[0].position}</h4>`
                 
-                mainDiv().innerHTML += playerCard
+                mainDiv.innerHTML += playerCard
             }
             createCard(searchedPlayer) 
                 
@@ -124,8 +125,8 @@ function attachSubmitForm() {
             
             btn2.addEventListener("click",() => favoritePlayer(fullNameAndTeam))
             
-            mainDiv().appendChild(btn2)
-            mainDiv().appendChild(btn)
+            mainDiv.appendChild(btn2)
+            mainDiv.appendChild(btn)
             
         })
     }
@@ -140,15 +141,14 @@ function attachHomePageEvent() {
 function attachFavoriteListClickEvent() {
     listPage.addEventListener("click", renderFavoriteListPage)
 }
-// DB JSON!!!!!!
-
-document.addEventListener("DOMContentLoaded", event => {
-    renderHomePage(); 
-    attachSubmitForm();
-    attachHomePageEvent();
-    attachFavoriteListClickEvent();
-    fetchPlayerList();
-    homePage.style.marginLeft = "100px"
-    listPage.style.marginRight = '100px'
     
-})
+renderHomePage(); 
+attachSubmitForm();
+attachHomePageEvent();
+attachFavoriteListClickEvent();
+fetchPlayerList();
+homePage.style.marginLeft = "100px"
+listPage.style.marginRight = '100px'
+    
+
+
