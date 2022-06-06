@@ -12,10 +12,10 @@ function resetMainDiv() {
 }
 
 
-const btn = document.createElement("button")
-btn.innerText = "Home"
-btn.className = "button" 
-btn.addEventListener("click", renderHomePage)
+const homeBtn = document.createElement("button")
+homeBtn.innerText = "Home"
+homeBtn.className = "button" 
+homeBtn.addEventListener("click", renderHomePage)
 
 //Event Handler
 function renderHomePage() {
@@ -38,7 +38,6 @@ function renderHomePage() {
     mainDiv.appendChild(img1)
     mainDiv.appendChild(p)
     mainDiv.appendChild(img2)
-
 }
 
 function renderFavoriteListPage() {
@@ -47,7 +46,7 @@ function renderFavoriteListPage() {
     h1.innerText = "Your favorites"
     mainDiv.appendChild(h1);
     renderFavoritePlayers();
-    mainDiv.appendChild(btn);
+    mainDiv.appendChild(homeBtn);
 }
 
 const renderFavoritePlayers = () => {
@@ -58,7 +57,7 @@ const renderFavoritePlayers = () => {
 
 const renderOnePlayer = (data, ul) => {
     const li = document.createElement('li');
-    li.innerText = data.player
+    li.innerText = data.player + " "
     ul.appendChild(li)
 }
 
@@ -100,7 +99,7 @@ function attachSubmitForm() {
         .then(resp => {
             let searchedPlayer = resp.data
             let fullNameAndTeam = resp.data[0].first_name + " " + resp.data[0].last_name + ": "
-            + resp.data[0].team.full_name
+            + resp.data[0].team.full_name + " "
             
             function createCard(player) {
                 
@@ -109,24 +108,24 @@ function attachSubmitForm() {
                 
                 const playerCard = 
                 `<h2>${player[0].first_name} ${player[0].last_name}</h2>
-                
                 <h3>${player[0].team.full_name}</h3>
                 <h4>${player[0].team.abbreviation}</h4>
                 <h4>${player[0].position}</h4>`
                 
-                mainDiv.innerHTML += playerCard
+                
+                mainDiv.innerHTML = playerCard
             }
             createCard(searchedPlayer) 
                 
             
-            const btn2 = document.createElement("button")
-            btn2.innerText = "Save to Favorites"
-            btn2.className = 'button'
+            const favBtn = document.createElement("button")
+            favBtn.innerText = "Save to Favorites"
+            favBtn.className = 'button'
             
-            btn2.addEventListener("click",() => favoritePlayer(fullNameAndTeam))
+            favBtn.addEventListener("click",() => favoritePlayer(fullNameAndTeam))
             
             mainDiv.appendChild(btn2)
-            mainDiv.appendChild(btn)
+            mainDiv.appendChild(homeBtn)
             
         })
     }
