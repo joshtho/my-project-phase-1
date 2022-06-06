@@ -1,9 +1,9 @@
 //Node getters
-const homePage = document.getElementById("HomePage")
 const mainDiv = document.getElementById('main')
-const searchBar = document.getElementById('myInput')
+const homePage = document.getElementById("HomePage")
 const submitBtn = document.querySelector('.container')
 const listPage = document.getElementById("listPage")
+const homeBtn = document.createElement("button")
 let favPlayers = []
 
 // Helpers
@@ -11,8 +11,6 @@ function resetMainDiv() {
     mainDiv.innerHTML = ""
 }
 
-
-const homeBtn = document.createElement("button")
 homeBtn.innerText = "Home"
 homeBtn.className = "button" 
 homeBtn.addEventListener("click", renderHomePage)
@@ -43,7 +41,7 @@ function renderHomePage() {
 function renderFavoriteListPage() {
     resetMainDiv();
     const h1 = document.createElement("h1");
-    h1.innerText = "Your favorites"
+    h1.innerText = "Your Favorites"
     mainDiv.appendChild(h1);
     renderFavoritePlayers();
     mainDiv.appendChild(homeBtn);
@@ -88,7 +86,7 @@ const fetchPlayerList = () => {
 //Event Listeners
 
 function attachSubmitForm() {
-    submitBtn.addEventListener('submit', (event) => {
+    submitBtn.addEventListener('submit', event => {
         event.preventDefault()
         resetMainDiv()
         let playerName = event.target[0].value 
@@ -102,7 +100,6 @@ function attachSubmitForm() {
             + resp.data[0].team.full_name + " "
             
             function createCard(player) {
-                
                 resetMainDiv()
                 mainDiv.className = "card"
                 
@@ -112,28 +109,24 @@ function attachSubmitForm() {
                 <h4>${player[0].team.abbreviation}</h4>
                 <h4>${player[0].position}</h4>`
                 
-                
                 mainDiv.innerHTML = playerCard
             }
             createCard(searchedPlayer) 
                 
-            
             const favBtn = document.createElement("button")
             favBtn.innerText = "Save to Favorites"
             favBtn.className = 'button'
             
             favBtn.addEventListener("click",() => favoritePlayer(fullNameAndTeam))
             
-            mainDiv.appendChild(btn2)
+            mainDiv.appendChild(favBtn)
             mainDiv.appendChild(homeBtn)
-            
         })
     }
     renderMyPlayer();
-   
 })
 }
-
+                
 function attachHomePageEvent() {
     homePage.addEventListener("click", renderHomePage)
 }          
@@ -148,6 +141,3 @@ attachFavoriteListClickEvent();
 fetchPlayerList();
 homePage.style.marginLeft = "100px"
 listPage.style.marginRight = '100px'
-    
-
-
